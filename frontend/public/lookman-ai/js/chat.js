@@ -3,6 +3,8 @@
  * Features real-time SSE token streaming, markdown rendering, image analysis, and session storage.
  */
 
+const API_BASE = 'https://lookman-nv4e.onrender.com/api';
+
 const state = {
   activeSessionId: null,
   sessions: [],
@@ -228,7 +230,7 @@ async function sendMessage() {
       imageBase64: imageBase64
     };
 
-    const res = await fetch('/api/lookman-ai/chat/stream', {
+    const res = await fetch(`${API_BASE}/lookman-ai/chat/stream`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -442,7 +444,7 @@ async function runStorageCalculator() {
   box.textContent = 'Calculating storage...';
 
   try {
-    const res = await fetch('/api/lookman-ai/tools/calculate-storage', {
+    const res = await fetch(`${API_BASE}/lookman-ai/tools/calculate-storage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cameras, days, resolution, codec })
